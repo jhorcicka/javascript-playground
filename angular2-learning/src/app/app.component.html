@@ -1,0 +1,7 @@
+<div *ngIf='appStatus'>{{appTitle}} Tutorialspoint</div>
+<div *ngFor='let item of appList'>
+  <ul>
+    <li>{{item.id}}</li>
+    <img [src]='item.url'>
+  </ul>
+</div>
