@@ -1,0 +1,72 @@
+<h1>Template form</h1>
+
+https://www.tektutorialshub.com/angular/angular-template-driven-forms/
+https://www.tektutorialshub.com/angular/template-driven-form-validation-in-angular/
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" name="firstname" #fname="ngModel" minlength="3" [(ngModel)]="contact.firstname">
+  </p>
+  <pre>Value    : {{fname.value}} </pre>
+  <pre>valid    : {{fname.valid}} </pre>
+  <pre>invalid  : {{fname.invalid}} </pre>
+  <pre>touched  : {{fname.touched}} </pre>
+ 
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" required minlength="3" [(ngModel)]="contact.lastname">
+  </p>
+ 
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" [(ngModel)]="contact.email">
+  </p>
+ 
+  <p>
+    <label for="gender">Geneder</label>
+    <input type="radio" value="male" id="gender" name="gender" [(ngModel)]="contact.gender"> Male
+    <input type="radio" value="female" id="gender" name="gender" [(ngModel)]="contact.gender"> Female
+  </p>
+ 
+  <p>
+    <label for="isMarried">Married</label>
+    <input type="checkbox" id="isMarried" name="isMarried" [(ngModel)]="contact.isMarried">
+  </p>
+ 
+  <p>
+  <label for="country">country </label>
+  <select name="country" id="country">
+    <option selected="" value=""></option>
+    <option [ngValue]="c.id" *ngFor="let c of countryList">
+      {{c.name}}
+    </option>
+  </select>
+  </p>
+
+  <div ngModelGroup="address">
+    <p>
+      <label for="city">City</label>
+      <input type="text" name="city" [(ngModel)]="contact.address.city">
+    </p>
+    <p>
+      <label for="street">Street</label>
+      <input type="text" name="street" [(ngModel)]="contact.address.street">
+    </p>
+    <p>
+      <label for="pincode">Pin Code</label>
+      <input type="text" name="pincode" [(ngModel)]="contact.address.pincode">
+    </p>
+  </div>
+ 
+  <p>
+    <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+    <button type="button" (click)="reset(contactForm)">Reset</button>
+  </p>
+
+  <pre>Value : {{contactForm.value | json }} </pre>
+  <pre>Valid : {{contactForm.valid}} </pre>
+  <pre>Touched : {{contactForm.touched  }} </pre>
+  <pre>Submitted : {{contactForm.submitted  }} </pre>
+</form>
