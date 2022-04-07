@@ -5,12 +5,15 @@
 import asyncio
 import websockets
 
-async def handler(websocket, path):
-  data = await websocket.recv()
-  reply = "Data received: %s" % (data)
-  await websocket.send(reply)
+CLIENTS = set()
 
-start_server = websockets.serve(handler, "localhost", 8000)
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+async def response(websocket, path):
+  CLIENTS.add(websocket)
+  async for message in websocket:
+    for client in CLIENTS:
+      await client.send(message)
+async def main():
+  async with websockets.serve(response, "localhost", 8765):
+    await asyncio.Future()
 
+asyncio.run(main())
