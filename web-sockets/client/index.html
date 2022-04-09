@@ -9,16 +9,18 @@
     <h1>This is a WebSockets example!</h1>
 
     <script>
-      const socket = new WebSocket('ws://localhost:8000');
+      const socket = new WebSocket('ws://localhost:8765');
       socket.addEventListener('open', function(event) {
         socket.send('Connection established. ');
       });
       socket.addEventListener('message', function(event) {
         console.log(event.data);
       });
-      const contactServer = () => {
-        socket.send('Init');
+
+      function sendMessage() {
+        socket.send('Client: ' + new Date());
       }
     </script>
+    <button onClick="sendMessage()">send</button>
   </body>
 </html>

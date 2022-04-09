@@ -16,7 +16,7 @@ export class TemplateFormComponent implements OnInit {
 
   ngOnInit() {
     let address = new Address("Numbai", "Perry Cross Rd", "400050")
-    this.contact = new Contact("Sachin", "Tendulkar", "sachin@gmail.com", "male", true, this.defaultCountry, address)
+    //this.contact = new Contact("Sachin", "Tendulkar", "sachin@gmail.com", "male", true, this.defaultCountry, address)
 
     this.countryList = [
       new Country("1", "India"),
