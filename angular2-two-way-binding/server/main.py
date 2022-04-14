@@ -12,7 +12,7 @@ app.config['CORS_HEADERS'] = 'Content-Type,Origin'
 @cross_origin()
 @app.route('/api/token', methods=['POST'])
 def getToken():
-  response = make_response('token')
+  response = make_response('{"token": "token"}')
   return addHeaders(response)
 
 @cross_origin()
@@ -32,16 +32,25 @@ def getItems():
   return addHeaders(response)
 
 def addHeaders(response):
+  #     header("Access-Control-Allow-Origin: http://localhost:4200");   
+  #     header("Content-Type: application/json; charset=UTF-8");    
+  #     header("Access-Control-Allow-Methods: POST, DELETE, OPTIONS");    
+  #     header("Access-Control-Max-Age: 3600");    
+  #     header("Access-Control-Allow-Headers: TOKEN, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   #response.headers['Content-Type'] = 'application/json'
-  response.headers['Content-Type'] = '*'
+  response.headers['Content-Type'] = 'application/json; charset=UTF-8'
   #response.headers['Access-Control-Allow-Origin'] = 'localhost'
   #response.headers['Access-Control-Allow-Origin'] = 'http://localhost:4200'
   #response.headers['Access-Control-Allow-Origin'] = '*'
+  #response.headers['Access-Control-Allow-Origin'] = 'http://localhost:4200,http://127.0.0.1:8888,http://localhost:8888'
   response.headers['Access-Control-Allow-Origin'] = '*'
   #response.headers['Access-Control-Allow-Methods'] = 'GET,POST,OPTIONS,PUT,PATCH,DELETE'
   #response.headers['Access-Control-Allow-Headers'] = 'Access-Control-Allow-Headers,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,X-Access-Token,XKey,Authorization'
-  response.headers['Access-Control-Allow-Methods'] = '*'
+  response.headers['Access-Control-Allow-Methods'] = 'GET,POST,DELETE,OPTIONS'
+  #response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Content-Length,Access-Control-Allow-Headers,Authorization,X-Requested-With,Accept,Referer,User-Agent'
   response.headers['Access-Control-Allow-Headers'] = '*'
+  response.headers['Access-Control-Max-Age'] = '3600'
+  print(response.headers)
   return response
 
 

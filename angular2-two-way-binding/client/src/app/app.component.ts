@@ -29,18 +29,10 @@ export class AppComponent implements OnInit {
   }
 
   getRemoteToken() {
-    let url: string = 'localhost:8888/api/token'
-    /*
+    let url: string = 'http://localhost:8888/api/token'
     let body = new FormData()
-    */
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Origin': 'http://localhost:4200'
-    })
-    let options = {'headers': headers}
-    this.httpClient.post<any>(url, options).subscribe(data => {
-    //this.httpClient.post<any>(url, body).subscribe(data => {
-      this.token = data
+    this.httpClient.post<any>(url, body).subscribe(data => {
+      this.token = data.token
     })
   }
 
@@ -49,7 +41,8 @@ export class AppComponent implements OnInit {
     let url: string = 'localhost:8888/api/token'
     let body = new FormData()
     let headers = new HttpHeaders({
-      'Accept': 'application/json'
+      'Content-Type': 'application/json',
+      'Origin': 'http://localhost:4200'
     })
     let options = {'headers': headers}
     this.httpClient.post<any>(url, options).subscribe(data => {
