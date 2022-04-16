@@ -1,0 +1,11 @@
+<h1>{{ title }}</h1>
+
+<p>Token: {{token}}</p>
+
+<select>
+  <option *ngFor="let option of options" value="{{option.id}}">{{option.title}}</option>
+</select>
+
+<select>
+  <option *ngFor="let option of remoteOptions" value="{{option.id}}">{{option.title}}</option>
+</select>
